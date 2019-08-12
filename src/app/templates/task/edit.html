@@ -1,0 +1,26 @@
+{% extends 'layaout.html' %}
+{% from 'helpers/_forms.html' import render_field %}
+
+{% block container %}
+    <div id='login' class="text-center mx-auto mt-5 px-4 py-5" style="width: 50%; border-style:outset; border-width: 1px;">
+        <h3>Editar tarea</h3>
+        <br>    
+        <form method="POST">
+            <input type='hidden' name='csrf_token'
+            value="{{csrf_token()}}">
+                        
+            <div>
+                {{ render_field(form.title, required=False, class='form-control text-center', placeholder='Titulo para la tarea') }}
+            </div>
+                        
+            <div>
+                {{ render_field(form.description, required=False, class='form-control text-center', placeholder='Nueva tarea') }}
+            </div>
+            <small id="emailHelp" class="form-text text-muted">La descripcion debe contener entre 4 y 50 caracteres</small>
+            <br>
+            <button type="submit" class="btn btn-dark">
+                <h6>Editar tarea</h6>
+            </button>
+        </form>
+    </div>
+{% endblock %}

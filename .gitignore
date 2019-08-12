@@ -1,0 +1,5 @@
+__pycache__/
+env/
+.vscode
+flask.db
+app/__pycache__

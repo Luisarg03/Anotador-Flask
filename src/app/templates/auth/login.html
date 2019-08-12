@@ -1,0 +1,26 @@
+{% extends 'layaout.html' %}
+{% from 'helpers/_forms.html' import render_field %}
+
+{% block container %}
+    <div id='login' class="text-center mx-auto mt-5 px-4 py-5 bg-dark text-white" style="width: 50%; border-style:outset; border-width: 1px; background:#E9E8E8">
+        <h3>Inicia sesión</h3>
+        <br>    
+        <form method="POST">
+            <input type='hidden' name='csrf_token'
+            value="{{csrf_token()}}">
+                        
+            <div>
+                {{ render_field(form.username, required=False, class='form-control text-center', placeholder='Ingresá usuario') }}
+            </div>
+                        
+            <div>
+                {{ render_field(form.password, required=False, class='form-control text-center', placeholder='Ingresá clave') }}
+            </div>
+            <small id="emailHelp" class="form-text text-muted">No Compartas tus contraseñas con nadie.</small>
+            <br>
+            <button type="submit" class="btn btn-outline-primary">
+                <h6>Acceder</h6>
+            </button>
+        </form>
+    </div>
+{% endblock %}

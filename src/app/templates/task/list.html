@@ -1,0 +1,64 @@
+{% extends 'layaout.html' %}
+
+{% block container %}
+
+    <a href="{{url_for('.new_task')}}" class="btn btn-dark mt-4">Nueva tarea</a>
+    <table class="table mt-4">
+        <thead>
+            <tr style="font-size: 125%">
+                <th scope="col">Titulo</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Fecha</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+                <tr>
+                    <td class="font-weight-bold">
+                        {{ task.title }}
+                    </td>
+                    <td>
+                        {{ task.little_descrip }}
+                    </td>
+                    <td>
+                        {{ task.little_at }}
+                    </td>
+
+                    <td>
+                        <a href="{{url_for('.get_task', task_id=task.id)}}" class="btn bg-primary text-white">
+                            Ver
+                        </a>
+
+                        <a href="{{url_for('.edit_task', task_id=task.id)}}" class="btn btn-dark">
+                            Editar
+                        </a>
+                        
+                        <a href="{{url_for('.delete_task', task_id=task.id)}}" class="btn btn-danger">
+                            Eliminar
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <nav>
+        <ul class="pagination">
+            {% if paginations.has_prev %}
+                <li class="page-item">
+                    <a href="{{ url_for('.tasks', page=page-1) }}" class="page-link bg-dark text-white">
+                        anterior
+                    </a>
+                </li>
+            {% endif %}
+
+            {% if paginations.has_next %}
+                <li class="page-item">
+                    <a href="{{ url_for('.tasks', page=page+1) }}" class="page-link bg-dark text-white">
+                        Siguiente
+                    </a>
+                </li>
+            {% endif %} 
+        </ul>
+    </nav>
+{% endblock %}
