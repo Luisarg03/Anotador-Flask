@@ -43,7 +43,7 @@ def index():
                            'index.html',
                            title='index',
                            form=form,
-                           activate='index')
+                           active='index')
 
 
 # Mi ruta recibe peticiones por GET y POST
@@ -114,7 +114,7 @@ def logout():
 @page.route('/tasks/')
 @page.route('/tasks/<int:page>')
 @login_required
-def tasks(page=1, per_page=5):
+def tasks(page=1, per_page=4):
     paginations = current_user.tasks.paginate(page, per_page=per_page)
     tasks = paginations.items
 

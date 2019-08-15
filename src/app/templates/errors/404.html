@@ -4,24 +4,21 @@
 {% block title %}
     Error 404
 {% endblock %}
-{% block navbar %}
-{% endblock %}
+
 {% block content %}
-    <div class="container text-center">
+    <div class="container text-center d-flex align-items-center">
         <div class="row">
-            <div class="col">
-                <h1>Error 404</h1>
+
+            <div class="col mt-5 p-5">
+                <img style="width: 65%" src="{{ url_for('static', filename='img/polar.png') }}">
             </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <h2>La pagina solicitada no existe!</h2>
+
+            <div class="col mt-5">
+                <h2 style="font-size: 300%" class="font-weight-bold text-primary">Error 404</h2>
+                <h3 class="font-weight-bold text-primary">Pagina no encontrada</h3>
             </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <img style="width: 25%" src="{{ url_for('static', filename='img/polar.png') }}">
-            </div>
+
         </div>
     </div>
+
 {% endblock %}

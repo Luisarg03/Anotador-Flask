@@ -2,63 +2,101 @@
 
 {% block container %}
 
-    <a href="{{url_for('.new_task')}}" class="btn btn-dark mt-4">Nueva tarea</a>
-    <table class="table mt-4">
-        <thead>
-            <tr style="font-size: 125%">
-                <th scope="col">Titulo</th>
-                <th scope="col">Descripcion</th>
-                <th scope="col">Fecha</th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for task in tasks %}
-                <tr>
-                    <td class="font-weight-bold">
-                        {{ task.title }}
-                    </td>
-                    <td>
-                        {{ task.little_descrip }}
-                    </td>
-                    <td>
-                        {{ task.little_at }}
-                    </td>
+    
 
-                    <td>
-                        <a href="{{url_for('.get_task', task_id=task.id)}}" class="btn bg-primary text-white">
-                            Ver
-                        </a>
+    <div class="container bg-dark text-white">
 
-                        <a href="{{url_for('.edit_task', task_id=task.id)}}" class="btn btn-dark">
-                            Editar
-                        </a>
+        <div class="container d-flex justify-content-center mt-3">
+            <div class="row">
+                <div class="col"></div>
+                <div class="col">
+                    <nav class="col">
+                        <ul class="pagination">
+                            {% if paginations.has_prev %}
+                                <li class="page-item">
+                                    <a href="{{ url_for('.tasks', page=page-1) }}" class="btn btn-outline-secondary">
+                                        anterior
+                                    </a>
+                                </li>
+                            {% endif %}
+
+                            {% if paginations.has_next %}
+                                <li class="page-item">
+                                    <a href="{{ url_for('.tasks', page=page+1) }}" class="btn btn-outline-secondary">
+                                        Siguiente
+                                    </a>
+                                </li>
+                            {% endif %} 
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+               <a href="{{url_for('.new_task')}}" class="btn btn-outline-primary mt-4">Nueva tarea</a> 
+            </div>
+        </div>
+        
+
+        <div class="row mt-4">
+            <div class="col">
+                <h4 class="font-weight-bold">Titulo</h4>
+            </div>
+            <div class="col">
+                <h4 class="font-weight-bold">Descripción</h4>
+            </div>
+            <div class="col">
+                <h4 class="font-weight-bold">Fecha</h4>
+            </div>
+        </div>
+
+        <div class="border-bottom border-light"></div>
+
+    {% for task in tasks %}
+        <div class="row mt-3">
+            
+            <div class="col font-weight-bold">
+                {{ task.title }}
+            </div>
+
+            <div class="col">
+                {{ task.little_descrip }}
+            </div>
+
+            <div class="col">
+                {{ task.little_at }}
+            </div>
+        </div>     
+
+    
+        <div class="row mb-5 mt-3">
+            <div class="col">
+                    
+                <a class="btn btn-info" href="{{url_for('.get_task', task_id=task.id)}}">
+                Ver
+                </a>
+                                
+                                
+                <a href="{{url_for('.edit_task', task_id=task.id)}}" class="btn btn-success">
+                    Editar
+                </a>
+                                
+                                
+                <a class="btn btn-danger" href="{{url_for('.delete_task', task_id=task.id)}}">
+                    Elimnar
+                </a>
                         
-                        <a href="{{url_for('.delete_task', task_id=task.id)}}" class="btn btn-danger">
-                            Eliminar
-                        </a>
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <nav>
-        <ul class="pagination">
-            {% if paginations.has_prev %}
-                <li class="page-item">
-                    <a href="{{ url_for('.tasks', page=page-1) }}" class="page-link bg-dark text-white">
-                        anterior
-                    </a>
-                </li>
-            {% endif %}
+            </div>
+        </div>
 
-            {% if paginations.has_next %}
-                <li class="page-item">
-                    <a href="{{ url_for('.tasks', page=page+1) }}" class="page-link bg-dark text-white">
-                        Siguiente
-                    </a>
-                </li>
-            {% endif %} 
-        </ul>
-    </nav>
+        <div class="border-bottom border-light"></div>
+
+    {% endfor %}
+              
+        
+    </div>
+
 {% endblock %}
