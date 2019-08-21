@@ -15,5 +15,4 @@
   - Flask-wtf
   - Flask-sqlalchemy
   - Flask-mail
-  - Threading
   - Werkzeug
